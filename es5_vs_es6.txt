@@ -1,0 +1,17 @@
+// es5
+
+var soccerPlayer = React.createClass({
+  render: function() {
+    <div>Soccer Player</div>
+  }
+});
+
+// es6
+
+export default class SoccerPlayer extend React.Component {
+  render() {
+    return (
+      <div>Soccer Player</div>
+    );
+  }
+}
