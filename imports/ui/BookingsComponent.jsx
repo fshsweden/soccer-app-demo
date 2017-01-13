@@ -5,8 +5,6 @@ import React, { Component, PropTypes } from "react";
 import { ButtonGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap';
 import {Const, BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
 
-import MuiThemeProvider     from "material-ui/styles/MuiThemeProvider";
-import AppBar               from "material-ui/AppBar";
 import { createContainer }  from "meteor/react-meteor-data";
 import { BookingItems }     from "../api/items";
 
@@ -25,17 +23,16 @@ const selectOptions = {
     // selected: PropTypes.array,
     // onSelect: PropTypes.func,
     // onSelectAll: PropTypes.func,
-    clickToSelect: {true},
-    hideSelectColumn: {false},
-    clickToSelectAndEditCell: {true},
+    // clickToSelect: {true},
+    // hideSelectColumn: {false},
+    // clickToSelectAndEditCell: {true},
     // clickToExpand: PropTypes.bool,
-    showOnlySelected: {false},
+    // showOnlySelected: {false},
     //unselectable: PropTypes.array
 };
 
 
 export class BookingsComponent extends React.Component {
-
 
     constructor(props) {
         super(props);
@@ -47,15 +44,14 @@ export class BookingsComponent extends React.Component {
         return this.props.items;
     }
 
-
   renderData() {
 
     console.log("renderData()");
 
-      let old = "";
-      let counter = 1000;
-        let key = "";
-        let lbl = "";
+    let old = "";
+    let counter = 1000;
+      let key = "";
+      let lbl = "";
 
     return (
 
@@ -73,15 +69,15 @@ export class BookingsComponent extends React.Component {
             }
             old = item.date_str;
 
-            return  <TableRow key={key} >
-                      <TableRowColumn></TableRowColumn>
-                      <TableRowColumn>{"YYYY-MM-DD"}        </TableRowColumn>
-                      <TableRowColumn>{item.from}-{item.to} </TableRowColumn>
-                      <TableRowColumn>{item.itemtype}       </TableRowColumn>
-                      <TableRowColumn>{item.booker}         </TableRowColumn>
-                      <TableRowColumn>{item.note}           </TableRowColumn>
-                      <TableRowColumn>{item.maintenance}    </TableRowColumn>
-                    </TableRow>
+            return  <tr key={key} >
+                      <td></td>
+                      <td>{"YYYY-MM-DD"}        </td>
+                      <td>{item.from}-{item.to} </td>
+                      <td>{item.itemtype}       </td>
+                      <td>{item.booker}         </td>
+                      <td>{item.note}           </td>
+                      <td>{item.maintenance}    </td>
+                    </tr>
 
         }
       )
@@ -116,10 +112,56 @@ export class BookingsComponent extends React.Component {
                   <TableHeaderColumn dataField='booker'>Team</TableHeaderColumn>
                   <TableHeaderColumn dataField='note' width="250">Note</TableHeaderColumn>
                   <TableHeaderColumn dataField='maintenance'>Maintenance</TableHeaderColumn>
-              </BootstrapTable>,
+              </BootstrapTable>
 
-            </div>
 
+              <table className="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderData()}
+              </tbody>
+
+            </table>
+
+          </div>
     );
   }
 }

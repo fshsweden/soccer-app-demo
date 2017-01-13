@@ -1,9 +1,6 @@
 
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
-// From https://github.com/oliviertassinari/react-swipeable-views
 import SwipeableViews from 'react-swipeable-views';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const styles = {
     headline: {
@@ -60,15 +57,3 @@ export default class WeekTabComponent extends React.Component {
         );
     }
 }
-
-/*
- <Tabs
- onChange={this.handleChange}
- value={this.state.slideIndex}
- >
-
- <SwipeableViews
- index={this.state.slideIndex}
- onChangeIndex={this.handleChange}
- >
- */
