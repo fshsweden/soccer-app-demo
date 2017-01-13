@@ -9,15 +9,15 @@ import Divider from 'material-ui/Divider'
 import { createContainer } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
 // database collection
-import { Players } from '../api/players';
+import { Players }      from '../api/players';
+import { BookingItems } from '../api/items';
 
 import TeamList from './Team-list';
 import TeamStats from './Team-stats';
 import Player from './Player';
 
 
-
-export class App extends React.Component {
+export class AppComponent extends React.Component {
 
   constructor(props) {
     super(props);
@@ -122,15 +122,15 @@ renderPlayers() {
 }
 
 // Magic again....
-App.propTypes = {
+AppComponent.propTypes = {
   players: PropTypes.array.isRequired
 }
 
 // Magic Magic Magic...
 export default createContainer( () => {
+    console.log("createContainer() called....");
     Meteor.subscribe('players');
-
     return {
       players:  Players.find({}, {sort: {name: 1}}).fetch(),
     }
-}, App);
+}, AppComponent);

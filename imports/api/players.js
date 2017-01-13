@@ -1,6 +1,8 @@
-import { Mongo } from 'meteor/mongo';
+// jshint esversion: 6
 
-export const Players = new Mongo.Collection('players');
+import { Mongo } from "meteor/mongo";
+
+export const Players = new Mongo.Collection("players");
 
 const PlayerSchema = new SimpleSchema({
   name: { type: String },
