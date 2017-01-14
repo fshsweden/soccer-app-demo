@@ -2,11 +2,11 @@
 
 import React, { Component, PropTypes } from "react";
 // import {Table, TableHeader,TableRow,TableRowColumn,TableHeaderColumn, TableBody} from "material-ui/Table";
-import { ButtonGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap';
-import {Const, BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
+import { Table, Navbar, NavDropdown, Nav, NavItem, ButtonGroup, DropdownButton, MenuItem, Button } from 'react-bootstrap';
 
 import { createContainer }  from "meteor/react-meteor-data";
 import { BookingItems }     from "../api/items";
+import { Menu }  from "./Menu.jsx";
 
 const options = {
     exportCSVText: 'my_export',
@@ -71,17 +71,22 @@ export class BookingsComponent extends React.Component {
 
             return  <tr key={key} >
                       <td></td>
-                      <td>{"YYYY-MM-DD"}        </td>
+                      <td>{lbl}       </td>
                       <td>{item.from}-{item.to} </td>
                       <td>{item.itemtype}       </td>
                       <td>{item.booker}         </td>
                       <td>{item.note}           </td>
                       <td>{item.maintenance}    </td>
+                       <td><a href="/edit">edit</a></td>
                     </tr>
 
         }
       )
     );
+  }
+
+  handleSelect(selectedKey) {
+      alert('selected ' + selectedKey);
   }
 
   render() {
@@ -95,71 +100,41 @@ export class BookingsComponent extends React.Component {
 
             <div className="container">
 
+                <Menu />
+
                 <ButtonGroup>
-                    <DropdownButton id="1" bsStyle="success" title="Dropdown">
-                        <MenuItem key="1">Dropdown link</MenuItem>
-                        <MenuItem key="2">Dropdown link</MenuItem>
+                    <DropdownButton id="1" bsStyle="success" title="Alla lag">
+                        <MenuItem key="1">A</MenuItem>
+                        <MenuItem key="2">J20</MenuItem>
+                        <MenuItem key="3">J18</MenuItem>
+                        <MenuItem key="4">U16</MenuItem>
+                        <MenuItem key="5">U15</MenuItem>
+                        <MenuItem key="6">U14</MenuItem>
+                        <MenuItem key="7">U13</MenuItem>
+                        <MenuItem key="8">U12</MenuItem>
+                        <MenuItem key="9">U11</MenuItem>
+                        <MenuItem key="10">U10</MenuItem>
+                        <MenuItem key="11">U9</MenuItem>
                     </DropdownButton>
                     <Button bsStyle="info">Middle</Button>
                     <Button bsStyle="info">Right</Button>
                 </ButtonGroup>
 
-              <BootstrapTable data={this.props.items} selectRow={selectOptions}>
-                  <TableHeaderColumn isKey dataField='_id'>ID</TableHeaderColumn>
-                  <TableHeaderColumn dataField='date_str'>Date</TableHeaderColumn>
-                  <TableHeaderColumn dataField='from'>From</TableHeaderColumn>
-                  <TableHeaderColumn dataField='to'>To</TableHeaderColumn>
-                  <TableHeaderColumn dataField='booker'>Team</TableHeaderColumn>
-                  <TableHeaderColumn dataField='note' width="250">Note</TableHeaderColumn>
-                  <TableHeaderColumn dataField='maintenance'>Maintenance</TableHeaderColumn>
-              </BootstrapTable>
-
-
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
-
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Event</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.renderData()}
-              </tbody>
-
-            </table>
+                <Table striped bordered condensed hover responsive>
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Activity</th>
+                        <th>Team</th>
+                        <th>Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.renderData()}
+                    </tbody>
+                </Table>
 
           </div>
     );

@@ -13,4 +13,5 @@ Meteor.startup(() => {
     Meteor.publish('items', function() {
         return BookingItems.find({});
     });
+
 });
